@@ -4,10 +4,10 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'users'
+app.config['MYSQL_HOST'] = 'bideq9zsednqkzpi5t2w-mysql.services.clever-cloud.com'
+app.config['MYSQL_USER'] = 'uqbvtgtgnzvott7h'
+app.config['MYSQL_PASSWORD'] = '5Si6qCqhHMhCawZyXHQT'
+app.config['MYSQL_DB'] = 'bideq9zsednqkzpi5t2w'
 
 CORS(app)
 

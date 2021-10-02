@@ -25,10 +25,11 @@ export const Navbar = () => (
                         <Link className="nav-link" to="/about">
                             About
                         </Link>
-                        <Link className="nav-link" to="/products">
-                            Products
-                        </Link>
+                        
                     </li>
+                    <Link className="nav-link" to="/products">
+                            Products
+                    </Link>
             
                 </ul>
             </div>

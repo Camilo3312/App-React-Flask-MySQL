@@ -18,9 +18,7 @@ code {
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
-
 }
-
 
 .card_product {
   max-width: 100%;
@@ -47,14 +45,13 @@ code {
 }
 
 .header_card {
-  background: #1c1c1c;
+  background: #0086ee;
 }
 .header_card p {
   padding: 5px 10px;
   margin: 0;
   color: #FFF;
   font-size: 20px;
-  font-weight: 700;
 }
 
 .body_card {
@@ -67,12 +64,15 @@ code {
 }
 
 .name_service {
-  font-size: 25px;
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
   color: #1c1c1c;
 }
 
 .name_user {
   color: #2b2b2b;
+  font-size: 20px;
 }
 
 .description {

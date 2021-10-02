@@ -4,6 +4,7 @@ const API = process.env.REACT_APP_API_URL;
 export const Products = () => {
 
     const [products, setProducts] = useState([])
+    // const [id, setId] = useState()
 
     const getProducts = async () => {
         const response = await fetch(`${API}/products`)
@@ -25,16 +26,17 @@ export const Products = () => {
                         <img src={product[4]} alt=""/>
                     </div>
                     <div className="info_card"> 
-                        <div className="header_card"> <p> {product[1]} </p> </div>
+                        <div className="header_card">
+                            <p> {product[1]} </p>
+                        </div>
                         <div className="body_card">
                             <p className="name_service">{product[2]}</p>
                             <p className="name_user">{product[3]}</p>     
-                            <p className="description">{product[5]}</p>                            
+                            {/* <p className="description">{product[5]}</p>                             */}
                         </div>
                     </div>
                 </div>
             ))}
-            
 
         </div>
     )
