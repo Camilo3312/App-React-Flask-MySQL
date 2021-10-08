@@ -12,9 +12,10 @@ export const Products = () => {
         setProducts(datas)
     }
 
-    useEffect(() =>{
+    useEffect( () => {
+
         getProducts();
-    }, [])
+    })
 
     return (
         <div className="container_services">

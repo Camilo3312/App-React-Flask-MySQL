@@ -9,6 +9,8 @@ export const Users = () => {
     const [phone, setPhone] = useState('')
     const [image, setImage] = useState('')
     const [msgError, setMsgerror] = useState('')
+    const [mError, setMeror] = useState(false)
+
 
     const [editing, setEditing] = useState(false)
     const [id, setId] = useState('')
@@ -34,6 +36,8 @@ export const Users = () => {
             })
             const data = await res.json();
             setMsgerror(data['message'])
+            setMeror(true)
+
         }
 
         else {
@@ -54,14 +58,20 @@ export const Users = () => {
 
             const data = await res.json();
             setMsgerror(data['message'])
-        }
+            setMeror(true)
 
+        }
+        
         await getUsers();
 
         setName('');
         setEmail('');
         setPhone('');
         setImage('');
+
+        setInterval(() => {
+            setMeror(false)
+        }, 3000)
     }
 
     // Method get registers
@@ -82,6 +92,8 @@ export const Users = () => {
             const data = await res.json();
             await getUsers();
             setMsgerror(data['message'])
+            setMeror(true)
+
         }
     }
 
@@ -100,6 +112,14 @@ export const Users = () => {
         setImage(data[4])
     }
 
+    const message = () => {
+        return (
+            <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+                <strong>{msgError}</strong>
+            </div>  
+        )   
+    }
+
     useEffect(() => {
         getUsers();
     }, [])
@@ -109,8 +129,9 @@ export const Users = () => {
             
             {/* Form */}
             <div className="col-md-8">
-                <form onSubmit={handleSubmit} className="card card-body">
-                    <div className="form-group">
+                <h1>Register</h1>
+                <form onSubmit={handleSubmit} className="">
+                    <div className="form-group mb-3">
 
                         <input type="text" name="name"
                             onChange={e => setName(e.target.value)}
@@ -120,17 +141,16 @@ export const Users = () => {
 
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group mb-3">
 
                         <input type="email"
                             onChange={e => setEmail(e.target.value)}
                             value={email} className="form-control"
                             placeholder="Email"
-                        />
-
+                        /> 
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group mb-3">
 
                         <input type="text"
                             onChange={e => setPhone(e.target.value)}
@@ -140,7 +160,7 @@ export const Users = () => {
 
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group mb-3">
 
                         <input type="text"
                             onChange={e => setImage(e.target.value)}
@@ -151,14 +171,14 @@ export const Users = () => {
                     </div>
 
                     <button className="btn btn-primary btn-block" >
-                        {editing ? 'update' : 'create'}
+                        {editing ? 'Update' : 'Create'}
                     </button>
 
-                </form>
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>{msgError}</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+                </form>            
+                {
+                    mError ? message() : <p></p> 
+                }
+                                      
             </div>
 
             {/* Table */}
@@ -184,9 +204,11 @@ export const Users = () => {
                                 <td>not found</td>
                                 <td>
                                     <button className="btn btn-secondary btn-block"
-                                        onClick={() => updateUser(user[0])}>Edit</button>
+                                        onClick={() => updateUser(user[0])}>Edit
+                                    </button>
                                     <button className="btn btn-danger btn-block"
-                                        onClick={() => deleteUser(user[0])}>Delete</button>
+                                        onClick={() => deleteUser(user[0])}>Delete
+                                    </button>
                                 </td>
 
                             </tr>

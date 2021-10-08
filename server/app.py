@@ -58,10 +58,17 @@ def updateUsers(id):
 
 @app.route('/products')
 def getProductos():
-    cursor = mysql.connection.cursor()
-    cursor.execute(f"select * from services")
-    services = cursor.fetchall()
-    return jsonify(services)
+    try:
+        cursor = mysql.connection.cursor()
+        cursor.execute(f"select * from services")
+        services = cursor.fetchall()
+        return jsonify(services)
+
+    except:
+
+        return jsonify({"message":"Error getting products"})
+
+
 
 if __name__=='__main__':
     app.run(port = 4000, debug = True)
