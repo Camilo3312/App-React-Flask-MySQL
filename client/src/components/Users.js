@@ -11,7 +11,6 @@ export const Users = () => {
     const [msgError, setMsgerror] = useState('')
     const [mError, setMeror] = useState(false)
 
-
     const [editing, setEditing] = useState(false)
     const [id, setId] = useState('')
 
@@ -63,15 +62,15 @@ export const Users = () => {
         }
         
         await getUsers();
+        
+        setInterval(() => {
+            setMeror(false)
+        }, 3000)
 
         setName('');
         setEmail('');
         setPhone('');
         setImage('');
-
-        setInterval(() => {
-            setMeror(false)
-        }, 3000)
     }
 
     // Method get registers
@@ -128,7 +127,7 @@ export const Users = () => {
         <div className="row">
             
             {/* Form */}
-            <div className="col-md-8">
+            <div className="container">
                 <h1>Register</h1>
                 <form onSubmit={handleSubmit} className="">
                     <div className="form-group mb-3">
@@ -182,7 +181,7 @@ export const Users = () => {
             </div>
 
             {/* Table */}
-            <div className="col-md-8">
+            <div className="container">
 
                 <table className="table table-striped">
                     <thead>
@@ -203,10 +202,10 @@ export const Users = () => {
 
                                 <td>not found</td>
                                 <td>
-                                    <button className="btn btn-secondary btn-block"
+                                    <button className="btn btn-secondary btn-block m-1"
                                         onClick={() => updateUser(user[0])}>Edit
                                     </button>
-                                    <button className="btn btn-danger btn-block"
+                                    <button className="btn btn-danger btn-block m-1"
                                         onClick={() => deleteUser(user[0])}>Delete
                                     </button>
                                 </td>
