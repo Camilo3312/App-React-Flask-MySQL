@@ -13,9 +13,8 @@ export const Products = () => {
     }
 
     useEffect( () => {
-
         getProducts();
-    })
+    },[])
 
     return (
         <div className="container_services">

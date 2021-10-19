@@ -1,7 +1,16 @@
 import React from "react";
 import {Link} from "react-router-dom"
+import Cookies from "universal-cookie";
 
-export const Navbar = () => (
+export const Navbar = () => {
+    let cookies = new Cookies();
+    let userSatate = cookies.get('user');
+
+    const Logout = () => {
+        cookies.remove('user');
+    }
+
+    return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
             <Link className="navbar-brand" to="/">
@@ -30,9 +39,17 @@ export const Navbar = () => (
                     <Link className="nav-link" to="/products">
                             Products
                     </Link>
+
+                    {
+                        userSatate ? 
+                        <button onClick={Logout} className="btn btn-danger">Logout</button>
+                        :
+                        <p></p>
+                    }
             
                 </ul>
             </div>
         </div>
     </nav>
-);
+    )
+}

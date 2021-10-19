@@ -1,3 +1,4 @@
+import re
 from flask import Flask, json, jsonify, request
 from flask_mysqldb import MySQL, MySQLdb 
 from flask_cors import CORS
@@ -12,6 +13,8 @@ app.config['MYSQL_DB'] = 'bideq9zsednqkzpi5t2w'
 CORS(app)
 
 mysql = MySQL(app)
+
+app.secret_key = 'mysecretkey'
 
 @app.route('/users')
 def getUsers():
@@ -63,11 +66,24 @@ def getProductos():
         cursor.execute(f"select * from services")
         services = cursor.fetchall()
         return jsonify(services)
-
     except:
-
         return jsonify({"message":"Error getting products"})
 
+@app.route('/validateuser', methods=['POST'])
+def validateUsers():
+    datas = request.json
+    try:
+        cursor = mysql.connection.cursor()
+        cursor.execute(f"select * from datas where email = '{datas['email']}' and phone = '{datas['phone']}' ")
+        datas = cursor.fetchone()
+
+        if datas != None:
+            return jsonify({"message":datas})
+        else:
+            return jsonify({"message":False})      
+
+    except Exception as ex:
+        return jsonify({"message":ex})
 
 
 if __name__=='__main__':
